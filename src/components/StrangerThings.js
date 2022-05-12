@@ -1,7 +1,8 @@
 import React from 'react';
-import 'dotenv/config';
 import CharactersService from '../services/charactersAPI';
 import Table from './Table';
+
+console.log(process.env.REACT_APP_FRONT_URL);
 
 const getRealityClass = (hereIsTheUpsideDownWorld) => (
   hereIsTheUpsideDownWorld ? 'upside-down' : 'stranger-things'
@@ -114,38 +115,43 @@ class StrangerThings extends React.Component {
           hereIsTheUpsideDownWorld,
         )}` }
       >
-        <div className="content strangerfy">
-          <div className="change-reality">
-            <button type="button" onClick={ this.changeRealityClick }>
-              {' '}
-              Mudar de Realidade
-            </button>
-          </div>
+        {
+          (process.env.REACT_APP_FRONT_URL === 'false')
+            ? (
+              <div className="content strangerfy">
+                <div className="change-reality">
+                  <button type="button" onClick={ this.changeRealityClick }>
+                    {' '}
+                    Mudar de Realidade
+                  </button>
+                </div>
 
-          <div>
-            <input
-              placeholder="Nome do Personagem"
-              onChange={ this.handleInput }
-              value={ characterName }
-            />
-            <button type="button" onClick={ this.searchClick }>Pesquisar</button>
-          </div>
+                <div>
+                  <input
+                    placeholder="Nome do Personagem"
+                    onChange={ this.handleInput }
+                    value={ characterName }
+                  />
+                  <button type="button" onClick={ this.searchClick }>Pesquisar</button>
+                </div>
 
-          <div>
-            <Table characters={ characters } />
-          </div>
+                <div>
+                  <Table characters={ characters } />
+                </div>
 
-          <div>
-            <p>
-              Página atual:
-              {page}
-            </p>
-          </div>
-          <div>
-            <button type="button" onClick={ this.previousPage }>Anterior</button>
-            <button type="button" onClick={ this.nextPage }>Próximo</button>
-          </div>
-        </div>
+                <div>
+                  <p>
+                    Página atual:
+                    {page}
+                  </p>
+                </div>
+                <div>
+                  <button type="button" onClick={ this.previousPage }>Anterior</button>
+                  <button type="button" onClick={ this.nextPage }>Próximo</button>
+                </div>
+              </div>
+            ) : (<h1> Em desenvolvimento </h1>)
+        }
       </div>
     );
   }
