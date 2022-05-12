@@ -113,8 +113,8 @@ class StrangerThings extends React.Component {
           hereIsTheUpsideDownWorld,
         )}` }
       >
-        { process.env.REACT_APP_FRONT_URL === 'false'
-          ? (<h1> Em desenvolvimento </h1>) : null}
+        { process.env.REACT_APP_FRONT_URL !== 'false'
+          ? (<h1> Em desenvolvimento </h1>) : null }
         <div className="content strangerfy">
           <div className="change-reality">
             <button type="button" onClick={ this.changeRealityClick }>
